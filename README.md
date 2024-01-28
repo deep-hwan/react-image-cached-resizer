@@ -122,4 +122,3 @@ MIT © Deepfactory, Inc. See [LICENSE](LICENSE) for details.
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./src/assets/deep-white.png">
     <img alt="Toss" src="./src/assets/deep-dark.png" width="120">
-# react-image-cached-resizer

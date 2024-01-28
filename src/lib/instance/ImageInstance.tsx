@@ -141,7 +141,6 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
         loading="lazy"
         style={{
           ...imageSizeStyle,
-          height: "100%",
           objectFit,
           borderRadius,
           aspectRatio: ratio ? `${ratio.x}/${ratio.y}` : "",

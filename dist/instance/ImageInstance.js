@@ -119,5 +119,5 @@ exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
         filter: imageURL === blurDataURL ? "blur(px)" : "none",
         aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : "",
     };
-    return ((0, jsx_runtime_1.jsx)("img", __assign({ ref: imgRef, src: imageURL, alt: alt, loading: "lazy", style: __assign(__assign({}, imageSizeStyle), { height: "100%", objectFit: objectFit, borderRadius: borderRadius, aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : "", cursor: props.onClick && "pointer", userSelect: props.onClick && "none" }) }, props)));
+    return ((0, jsx_runtime_1.jsx)("img", __assign({ ref: imgRef, src: imageURL, alt: alt, loading: "lazy", style: __assign(__assign({}, imageSizeStyle), { objectFit: objectFit, borderRadius: borderRadius, aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : "", cursor: props.onClick && "pointer", userSelect: props.onClick && "none" }) }, props)));
 });
