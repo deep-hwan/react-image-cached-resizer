@@ -1,0 +1,92 @@
+{
+  "name": "react-image-cached-resizer",
+  "version": "0.0.1",
+  "private": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "dist/lib/index.js",
+  "module": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "browser": "./browser/specific/main.js",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^6.3.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.6",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-flatlist-ui": "^1.1.4",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "vite": "^5.0.12",
+    "web-vitals": "^3.5.1"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/lib/index.js",
+      "require": "./dist/lib/index.js",
+      "default": "./dist/lib/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "clean": "rimraf dist",
+    "compile": "npm run clean && cross-env NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "start": "react-scripts start",
+    "build": "tsc && vite build --base=./",
+    "build:cjs": "babel src --out-dir dist/cjs --copy-files --env-name cjs",
+    "build:esm": "babel src --out-dir dist/esm --copy-files --env-name esm",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "prepare": "rimraf dist && mkdir dist && tsc"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "Provides React.js image resizing, memory cache, SSR capabilities, and image magnification capabilities",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deep-hwan/react-image-cached-resizer"
+  },
+  "keywords": [
+    "typescript",
+    "Reactjs",
+    "image-resizer",
+    "image-resizing",
+    "image-cache",
+    "image-memorization",
+    "react-image-cache",
+    "react-memorization",
+    "react-image",
+    "react-server-sied-randering"
+  ],
+  "author": "deep",
+  "license": "ISC",
+  "devDependencies": {
+    "vite-plugin-dts": "^3.7.2"
+  }
+}
