@@ -135,6 +135,7 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
 
     return (
       <img
+        className="cached-image"
         ref={imgRef}
         src={imageURL}
         alt={alt}
@@ -144,8 +145,6 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
           objectFit,
           borderRadius,
           aspectRatio: ratio ? `${ratio.x}/${ratio.y}` : "",
-          cursor: props.onClick && "pointer",
-          userSelect: props.onClick && "none",
         }}
         {...props}
       />

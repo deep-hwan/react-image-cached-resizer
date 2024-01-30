@@ -25,7 +25,7 @@ export const Avatar = forwardRef(
       source,
       alt,
       objectFit,
-      borderRadius,
+      borderRadius = 10000,
       size = 30,
       zoomUp,
       onClick,
@@ -66,25 +66,41 @@ export const Avatar = forwardRef(
     return (
       <>
         {source ? (
-          <ImageInstance
-            ref={ref}
-            source={source}
-            alt={alt}
-            size={{
+          <div
+            className="cached-image-box"
+            style={{
               width: "100%",
               height: "100%",
               maxWidth: size,
               minWidth: size,
               maxHeight: size,
               minHeight: size,
+              cursor: (zoomUp && "pointer") || (props.onClick && "pointer"),
+              userSelect: props.onClick && "none",
+              borderRadius: borderRadius,
             }}
-            objectFit={props.objectFit ?? "cover"}
-            borderRadius={props.borderRadius ?? 10000}
-            onClick={handleOnClick}
             {...otherProps}
-          />
+          >
+            <ImageInstance
+              ref={ref}
+              source={source}
+              alt={alt}
+              size={{
+                width: "100%",
+                height: "100%",
+                maxWidth: size,
+                minWidth: size,
+                maxHeight: size,
+                minHeight: size,
+              }}
+              objectFit={props.objectFit ?? "cover"}
+              borderRadius={borderRadius}
+              onClick={handleOnClick}
+            />
+          </div>
         ) : (
           <svg
+            className="cache-avatar-icon"
             viewBox="0 0 22 22"
             fill="none"
             style={{
@@ -111,8 +127,12 @@ export const Avatar = forwardRef(
         {zoomImg && (
           <>
             <LayerBlur />
-            <div style={themes.zoomImgContainer}>
-              <div ref={imgRef} style={themes.zoomImgBox}>
+            <div className="zoom-pop-up" style={themes.zoomImgContainer}>
+              <div
+                className="zoom-image"
+                ref={imgRef}
+                style={themes.zoomImgBox}
+              >
                 <ImageInstance
                   source={source}
                   alt={alt}
@@ -125,9 +145,8 @@ export const Avatar = forwardRef(
                     minHeight: size,
                   }}
                   objectFit={props.objectFit ?? "cover"}
-                  borderRadius={props.borderRadius ?? 10000}
+                  borderRadius={borderRadius}
                   onClick={handleOnClick}
-                  {...otherProps}
                 />
               </div>
             </div>

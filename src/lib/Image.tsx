@@ -73,23 +73,34 @@ export const Image = forwardRef(
 
     return (
       <>
-        <ImageInstance
-          source={source}
-          alt={alt}
-          size={size}
-          ratio={ratio}
-          objectFit={objectFit}
-          borderRadius={borderRadius}
-          ref={ref}
-          onClick={handleOnClick}
+        <div
+          className="cached-image-box"
+          style={{
+            ...size,
+            cursor: (zoomUp && "pointer") || (props.onClick && "pointer"),
+            userSelect: props.onClick && "none",
+            borderRadius: borderRadius,
+          }}
           {...otherProps}
-        />
+        >
+          <ImageInstance
+            source={source}
+            alt={alt}
+            size={size}
+            ratio={ratio}
+            objectFit={objectFit}
+            borderRadius={borderRadius}
+            ref={ref}
+            onClick={handleOnClick}
+          />
+        </div>
 
         {zoomImg && (
           <>
             <LayerBlur />
-            <div style={themes.zoomContainer}>
+            <div className="zoom-pop-up" style={themes.zoomContainer}>
               <div
+                className="zoom-image-pop-up"
                 style={{
                   position: "relative",
                   width: "100%",
@@ -100,6 +111,7 @@ export const Image = forwardRef(
                 }}
               >
                 <div
+                  className="zoom-image"
                   ref={imgRef}
                   style={{
                     position: "relative",
@@ -121,6 +133,7 @@ export const Image = forwardRef(
               </div>
 
               <div
+                className="modal-pop-up-cancel-tab"
                 onClick={() => setZoomImg(false)}
                 style={{
                   position: "absolute",
