@@ -23,7 +23,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImageInstance = void 0;
-var jsx_runtime_1 = require("react/jsx-runtime");
+var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
+/** @jsxImportSource @emotion/react */
 var react_1 = require("react");
 var imageCache = new Map();
 exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
@@ -119,5 +120,5 @@ exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
         filter: imageURL === blurDataURL ? "blur(px)" : "none",
         aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : "",
     };
-    return ((0, jsx_runtime_1.jsx)("img", __assign({ ref: imgRef, src: imageURL, alt: alt, loading: "lazy", style: __assign(__assign({}, imageSizeStyle), { objectFit: objectFit, borderRadius: borderRadius, aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : "", cursor: props.onClick && "pointer", userSelect: props.onClick && "none" }) }, props)));
+    return ((0, jsx_runtime_1.jsx)("img", __assign({ ref: imgRef, src: imageURL, alt: alt, loading: "lazy", css: __assign(__assign({}, imageSizeStyle), { objectFit: objectFit, borderRadius: borderRadius, aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : "" }) }, props)));
 });

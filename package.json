@@ -1,6 +1,6 @@
 {
   "name": "react-image-cached-resizer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": false,
   "files": [
     "dist",
@@ -15,6 +15,9 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",

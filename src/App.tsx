@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React from "react";
 
 import { Avatar } from "./lib/Avatar";
@@ -6,8 +7,10 @@ import { Image } from "./lib/Image";
 export default function App() {
   return (
     <div
-      style={{
+      css={{
+        maxWidth: 500,
         display: "flex",
+        flexDirection: "column",
         width: "100%",
         height: "100%",
         minHeight: "100vh",
@@ -16,8 +19,7 @@ export default function App() {
       <Image
         source="https://avatars.githubusercontent.com/u/120083142?v=4" // Image source url
         alt="this image"
-        size={{ maxWidth: 400, maxHeight: 500 }} // Image sizes
-        ratio={{ x: 3, y: 4 }} // Image size percentage (ratio)
+        ratio={{ x: 1, y: 1 }} // Image size percentage (ratio)
         objectFit="cover"
         borderRadius={10}
         zoomUp={true} // Image zoom pop-up or not

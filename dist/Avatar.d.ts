@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, { ImgHTMLAttributes } from "react";
 interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     source: string | File;

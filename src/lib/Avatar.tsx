@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import React, {
   ForwardedRef,
   ImgHTMLAttributes,
@@ -8,7 +10,7 @@ import React, {
   useState,
 } from "react";
 import { ImageInstance } from "./instance/ImageInstance";
-import { LayerBlur } from "./instance/Layer";
+import { FixedAvatarPopWrap } from "./instance/FixedAvatarPopWrap";
 
 interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   source: string | File;
@@ -66,9 +68,12 @@ export const Avatar = forwardRef(
     return (
       <>
         {source ? (
-          <div
-            className="cached-image-box"
-            style={{
+          <ImageInstance
+            className="cached-avatar-box"
+            ref={ref}
+            source={source}
+            alt={alt}
+            css={{
               width: "100%",
               height: "100%",
               maxWidth: size,
@@ -77,33 +82,18 @@ export const Avatar = forwardRef(
               minHeight: size,
               cursor: (zoomUp && "pointer") || (props.onClick && "pointer"),
               userSelect: props.onClick && "none",
-              borderRadius: borderRadius,
             }}
+            objectFit={props.objectFit ?? "cover"}
+            borderRadius={borderRadius}
+            onClick={handleOnClick}
             {...otherProps}
-          >
-            <ImageInstance
-              ref={ref}
-              source={source}
-              alt={alt}
-              size={{
-                width: "100%",
-                height: "100%",
-                maxWidth: size,
-                minWidth: size,
-                maxHeight: size,
-                minHeight: size,
-              }}
-              objectFit={props.objectFit ?? "cover"}
-              borderRadius={borderRadius}
-              onClick={handleOnClick}
-            />
-          </div>
+          />
         ) : (
           <svg
             className="cache-avatar-icon"
             viewBox="0 0 22 22"
             fill="none"
-            style={{
+            css={{
               width: `${size}px`,
               height: `${size}px`,
               minWidth: `${size}px`,
@@ -125,59 +115,35 @@ export const Avatar = forwardRef(
         )}
 
         {zoomImg && (
-          <>
-            <LayerBlur />
-            <div className="zoom-pop-up" style={themes.zoomImgContainer}>
-              <div
-                className="zoom-image"
-                ref={imgRef}
-                style={themes.zoomImgBox}
-              >
-                <ImageInstance
-                  source={source}
-                  alt={alt}
-                  size={{
-                    width: "100%",
-                    height: "100%",
-                    maxWidth: 600,
-                    minWidth: size,
-                    maxHeight: 600,
-                    minHeight: size,
-                  }}
-                  objectFit={props.objectFit ?? "cover"}
-                  borderRadius={borderRadius}
-                  onClick={handleOnClick}
-                />
-              </div>
+          <FixedAvatarPopWrap>
+            <div
+              className="zoom-image"
+              ref={imgRef}
+              css={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <ImageInstance
+                source={source}
+                alt={alt}
+                size={{
+                  width: "100%",
+                  height: "100%",
+                  maxWidth: size * 3.5,
+                  minWidth: size,
+                  maxHeight: size * 3.5,
+                  minHeight: size,
+                }}
+                objectFit={props.objectFit ?? "cover"}
+                borderRadius={borderRadius}
+                onClick={handleOnClick}
+              />
             </div>
-          </>
+          </FixedAvatarPopWrap>
         )}
       </>
     );
   }
 );
-
-const themes = {
-  zoomImgContainer: {
-    zIndex: 9999,
-    position: "fixed",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    width: "100%",
-    minHeight: "100vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 30,
-  },
-
-  zoomImgBox: {
-    width: "100%",
-    height: "100%",
-    maxWidth: 600,
-    maxHeight: 600,
-    cursor: "visible",
-  },
-} as const;

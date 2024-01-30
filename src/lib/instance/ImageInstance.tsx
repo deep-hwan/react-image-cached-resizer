@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, {
   useState,
   useEffect,
@@ -135,12 +136,11 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
 
     return (
       <img
-        className="cached-image"
         ref={imgRef}
         src={imageURL}
         alt={alt}
         loading="lazy"
-        style={{
+        css={{
           ...imageSizeStyle,
           objectFit,
           borderRadius,
