@@ -68,6 +68,7 @@ function App() {
         size={100} // Avatar size
         zoomUp={true} // Avatar zoom pop-up or not
         borderRadius={100}
+        zoomUpImageSize={400}
         onClick={() => console.log("onClick")}
       />
     </>
@@ -101,15 +102,16 @@ function App() {
 
 ## Avatar : Use Documentation
 
-| Props        | Type                                              | Features                                                       | Description                                                    | Default   |
-| ------------ | ------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
-| source (\*)  | string , File                                     | Image source url                                               | Enter the image url or Public image path.                      |           |
-| alt (\*)     | string , alt                                      | alt                                                            |                                                                |           |
-| zoomUp       | boolean                                           | Image zoom pop-up or not                                       | Image zoom pop-up or not                                       | false     |
-| size         | number                                            | Avatar Image Size                                              | Avatar image size must be 1:1 ratio                            | 30        |
-| objectFit    | "cover" , "contain" , "fill" , "none" , undefined | Specify how you want to size your content to fit your elements | Specify how you want to size your content to fit your elements | undefined |
-| borderRadius | number , string                                   | borderRadius                                                   | borderRadius                                                   | 0         |
-| … props      |                                                   |                                                                |                                                                |           |
+| Props           | Type                                              | Features                                                       | Description                                                    | Default   |
+| --------------- | ------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
+| source (\*)     | string , File                                     | Image source url                                               | Enter the image url or Public image path.                      |           |
+| alt (\*)        | string , alt                                      | alt                                                            |                                                                |           |
+| zoomUp          | boolean                                           | Image zoom pop-up or not                                       | Image zoom pop-up or not                                       | false     |
+| zoomUpImageSize | number                                            | Image zoom pop-up size                                         | Image zoom pop-up size                                         | false     |
+| size            | number                                            | Avatar Image Size                                              | Avatar image size must be 1:1 ratio                            | 30        |
+| objectFit       | "cover" , "contain" , "fill" , "none" , undefined | Specify how you want to size your content to fit your elements | Specify how you want to size your content to fit your elements | undefined |
+| borderRadius    | number , string                                   | borderRadius                                                   | borderRadius                                                   | 0         |
+| … props         |                                                   |                                                                |                                                                |           |
 
 ---
 

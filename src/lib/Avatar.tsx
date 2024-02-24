@@ -19,6 +19,7 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   objectFit?: "cover" | "contain" | "fill" | "none" | undefined;
   borderRadius?: number | string;
   zoomUp?: boolean;
+  zoomUpImageSize?: number;
 }
 
 export const Avatar = forwardRef(
@@ -30,6 +31,7 @@ export const Avatar = forwardRef(
       borderRadius = 10000,
       size = 30,
       zoomUp,
+      zoomUpImageSize,
       onClick,
       ...otherProps
     } = props;
@@ -131,10 +133,10 @@ export const Avatar = forwardRef(
                 size={{
                   width: "100%",
                   height: "100%",
-                  maxWidth: size * 3.5,
-                  minWidth: size,
-                  maxHeight: size * 3.5,
-                  minHeight: size,
+                  maxWidth: zoomUpImageSize ? zoomUpImageSize : size * 3.5,
+                  minWidth: zoomUpImageSize ? zoomUpImageSize : size * 3.5,
+                  maxHeight: zoomUpImageSize ? zoomUpImageSize : size * 3.5,
+                  minHeight: zoomUpImageSize ? zoomUpImageSize : size * 3.5,
                 }}
                 objectFit={props.objectFit ?? "cover"}
                 borderRadius={borderRadius}

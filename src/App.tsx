@@ -31,6 +31,7 @@ export default function App() {
         alt="user-avatar"
         size={100} // Avatar size
         borderRadius={1000}
+        zoomUpImageSize={800}
         zoomUp={true} // Avatar zoom pop-up or not
         onClick={() => console.log("onClick")}
       />

@@ -7,6 +7,7 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     objectFit?: "cover" | "contain" | "fill" | "none" | undefined;
     borderRadius?: number | string;
     zoomUp?: boolean;
+    zoomUpImageSize?: number;
 }
 export declare const Avatar: React.ForwardRefExoticComponent<ImageProps & React.RefAttributes<HTMLImageElement>>;
 export {};
