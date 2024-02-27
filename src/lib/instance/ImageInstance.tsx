@@ -134,6 +134,8 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
       aspectRatio: ratio ? `${ratio.x}/${ratio.y}` : "",
     };
 
+    console.error = () => {};
+
     return (
       <img
         ref={imgRef}
