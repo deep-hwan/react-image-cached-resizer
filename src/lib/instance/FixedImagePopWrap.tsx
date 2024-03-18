@@ -13,7 +13,7 @@ export function FixedImagePopWrap({
     <>
       <div
         css={{
-          zIndex: 9000,
+          zIndex: 99997,
           display: "flex",
           flex: 1,
           width: "100%",
@@ -35,7 +35,7 @@ export function FixedImagePopWrap({
       <div
         className="zoom-pop-wrap"
         css={{
-          zIndex: 9001,
+          zIndex: 99998,
           width: "100%",
           height: "100%",
           minHeight: "100vh",
@@ -65,7 +65,7 @@ export function FixedImagePopWrap({
           className="modal-pop-up-cancel-tab"
           onClick={onCancel}
           css={{
-            zIndex: 9002,
+            zIndex: 99999,
             position: "absolute",
             top: 0,
             right: 0,

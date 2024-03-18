@@ -7,7 +7,7 @@ export function FixedAvatarPopWrap({ children }: { children: ReactNode }) {
     <>
       <div
         css={{
-          zIndex: 9000,
+          zIndex: 99998,
           display: "flex",
           flex: 1,
           width: "100%",
@@ -29,7 +29,7 @@ export function FixedAvatarPopWrap({ children }: { children: ReactNode }) {
       <div
         className="zoom-pop-wrap"
         css={{
-          zIndex: 9999,
+          zIndex: 99999,
           position: "fixed",
           top: 0,
           bottom: 0,
