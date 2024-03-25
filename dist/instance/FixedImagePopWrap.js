@@ -16,7 +16,7 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 function FixedImagePopWrap(_a) {
     var children = _a.children, onCancel = _a.onCancel;
     return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { css: {
-                    zIndex: 9000,
+                    zIndex: 99997,
                     display: "flex",
                     flex: 1,
                     width: "100%",
@@ -33,7 +33,7 @@ function FixedImagePopWrap(_a) {
                     paddingLeft: "max(0px, env(safe-area-inset-left))",
                     paddingRight: "max(0px, env(safe-area-inset-right))",
                 } }), (0, jsx_runtime_1.jsxs)("div", __assign({ className: "zoom-pop-wrap", css: {
-                    zIndex: 9001,
+                    zIndex: 99998,
                     width: "100%",
                     height: "100%",
                     minHeight: "100vh",
@@ -51,7 +51,7 @@ function FixedImagePopWrap(_a) {
                             alignItems: "center",
                             justifyContent: "center",
                         } }, { children: children })), (0, jsx_runtime_1.jsx)("div", __assign({ className: "modal-pop-up-cancel-tab", onClick: onCancel, css: {
-                            zIndex: 9002,
+                            zIndex: 99999,
                             position: "absolute",
                             top: 0,
                             right: 0,

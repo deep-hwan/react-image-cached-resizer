@@ -16,7 +16,7 @@ var jsx_runtime_1 = require("@emotion/react/jsx-runtime");
 function FixedAvatarPopWrap(_a) {
     var children = _a.children;
     return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { css: {
-                    zIndex: 9000,
+                    zIndex: 99998,
                     display: "flex",
                     flex: 1,
                     width: "100%",
@@ -33,7 +33,7 @@ function FixedAvatarPopWrap(_a) {
                     paddingLeft: "max(0px, env(safe-area-inset-left))",
                     paddingRight: "max(0px, env(safe-area-inset-right))",
                 } }), (0, jsx_runtime_1.jsx)("div", __assign({ className: "zoom-pop-wrap", css: {
-                    zIndex: 9999,
+                    zIndex: 99999,
                     position: "fixed",
                     top: 0,
                     bottom: 0,
