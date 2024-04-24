@@ -33,7 +33,7 @@ function FixedAvatarPopWrap(_a) {
                     paddingLeft: "max(0px, env(safe-area-inset-left))",
                     paddingRight: "max(0px, env(safe-area-inset-right))",
                 } }), (0, jsx_runtime_1.jsx)("div", __assign({ className: "zoom-pop-wrap", css: {
-                    zIndex: 99999,
+                    zIndex: 999999,
                     position: "fixed",
                     top: 0,
                     bottom: 0,

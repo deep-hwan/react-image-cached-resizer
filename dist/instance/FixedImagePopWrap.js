@@ -33,7 +33,7 @@ function FixedImagePopWrap(_a) {
                     paddingLeft: "max(0px, env(safe-area-inset-left))",
                     paddingRight: "max(0px, env(safe-area-inset-right))",
                 } }), (0, jsx_runtime_1.jsxs)("div", __assign({ className: "zoom-pop-wrap", css: {
-                    zIndex: 99998,
+                    zIndex: 999998,
                     width: "100%",
                     height: "100%",
                     minHeight: "100vh",
