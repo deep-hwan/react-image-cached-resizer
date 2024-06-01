@@ -95,8 +95,8 @@ exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
             var maxHeight = (size === null || size === void 0 ? void 0 : size.maxHeight)
                 ? parseInt(size.maxHeight.toString(), 10)
                 : img.height;
-            canvas.width = maxWidth;
-            canvas.height = maxHeight;
+            canvas.width = maxWidth !== null && maxWidth !== void 0 ? maxWidth : size === null || size === void 0 ? void 0 : size.minWidth;
+            canvas.height = maxHeight !== null && maxHeight !== void 0 ? maxHeight : size === null || size === void 0 ? void 0 : size.minHeight;
             ctx.drawImage(img, 0, 0, maxWidth, maxHeight);
             try {
                 var resizedImage = canvas.toDataURL();

@@ -105,8 +105,8 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
           ? parseInt(size.maxHeight.toString(), 10)
           : img.height;
 
-        canvas.width = maxWidth;
-        canvas.height = maxHeight;
+        canvas.width = maxWidth ?? size?.minWidth;
+        canvas.height = maxHeight ?? size?.minHeight;
 
         ctx.drawImage(img, 0, 0, maxWidth, maxHeight);
 
