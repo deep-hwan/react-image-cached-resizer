@@ -20,11 +20,11 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     maxHeight?: number | string;
   };
   ratio?: { x?: number; y?: number };
-  objectFit?: "cover" | "contain" | "fill" | "none";
+  objectFit?: "cover" | "contain" | "fill" | "none" | undefined;
   borderRadius?: number | string;
 }
 
-const imageCache = new Map<string, string>();
+const imageCache = new Map();
 
 export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
   (
@@ -35,9 +35,6 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAM0lEQVR4nAEoANf/AP7+//j9/+ry/wDe3NbEqorX1cwAkn9ndUYhjHddAAgEBBIODgcHCB3XE9M/sWuRAAAAAElFTkSuQmCC";
     const [imageURL, setImageURL] = useState<string>(blurDataURL);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [aspectRatio, setAspectRatio] = useState<number | undefined>(
-      undefined
-    );
     const imgRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
@@ -69,15 +66,9 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
     }, [imgRef]);
 
     useEffect(() => {
-      if (isLoaded && typeof source === "string") {
-        getAspectRatio(source, setAspectRatio);
-      }
-    }, [source, isLoaded]);
-
-    useEffect(() => {
       if (isLoaded) {
         if (typeof window === "undefined") {
-          setImageURL(typeof source === "string" ? source : ""); // ssr
+          setImageURL(source instanceof File ? "" : source); // ssr
         } else {
           if (source instanceof File) {
             const reader = new FileReader();
@@ -95,21 +86,11 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
       }
     }, [source, isLoaded]);
 
-    const getAspectRatio = (
-      src: string,
-      setAspectRatio: React.Dispatch<React.SetStateAction<number | undefined>>
-    ) => {
-      const img = new Image();
-      img.onload = () => {
-        const aspectRatio = img.width / img.height;
-        setAspectRatio(aspectRatio);
-      };
-      img.src = src;
-    };
-
+    //
+    // image resizing logic
     const resizeImage = (source: string) => {
-      const img = new Image();
-      img.crossOrigin = "anonymous"; // CORS compliance
+      const img = document.createElement("img");
+      img.crossOrigin = "anonymous"; // CORS 정책 준수
       img.src = source;
 
       img.onload = () => {
@@ -124,8 +105,8 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
           ? parseInt(size.maxHeight.toString(), 10)
           : img.height;
 
-        canvas.width = maxWidth;
-        canvas.height = maxHeight;
+        canvas.width = maxWidth ?? size?.minWidth;
+        canvas.height = maxHeight ?? size?.minHeight;
 
         ctx.drawImage(img, 0, 0, maxWidth, maxHeight);
 
@@ -141,8 +122,7 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
 
     const imageSizeStyle = {
       width: size?.width ?? "100%",
-      height:
-        size?.height ?? (aspectRatio ? `calc(100% / ${aspectRatio})` : "auto"),
+      height: size?.height ?? "auto",
       minWidth: size?.minWidth ?? "auto",
       maxWidth: size?.maxWidth ?? "auto",
       minHeight: size?.minHeight ?? "auto",
@@ -150,9 +130,11 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
       backgroundImage:
         imageURL === blurDataURL ? `url('${blurDataURL}')` : "none",
       backgroundSize: "cover",
-      filter: imageURL === blurDataURL ? "blur(20px)" : "none",
-      aspectRatio: ratio ? `${ratio.x}/${ratio.y}` : undefined,
+      filter: imageURL === blurDataURL ? "blur(px)" : "none",
+      aspectRatio: ratio ? `${ratio.x}/${ratio.y}` : "",
     };
+
+    console.error = () => {};
 
     return (
       <img
@@ -163,8 +145,8 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
         css={{
           ...imageSizeStyle,
           objectFit,
-          borderRadius: borderRadius ?? 0,
-          aspectRatio: ratio ? `${ratio.x}/${ratio.y}` : undefined,
+          borderRadius,
+          aspectRatio: ratio ? `${ratio.x}/${ratio.y}` : "",
         }}
         {...props}
       />
