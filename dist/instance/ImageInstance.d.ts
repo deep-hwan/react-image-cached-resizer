@@ -15,7 +15,7 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
         x?: number;
         y?: number;
     };
-    objectFit?: "cover" | "contain" | "fill" | "none";
+    objectFit?: "cover" | "contain" | "fill" | "none" | undefined;
     borderRadius?: number | string;
 }
 export declare const ImageInstance: React.ForwardRefExoticComponent<ImageProps & React.RefAttributes<HTMLImageElement>>;

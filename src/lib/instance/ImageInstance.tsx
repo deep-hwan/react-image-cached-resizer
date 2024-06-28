@@ -130,7 +130,7 @@ export const ImageInstance = forwardRef<HTMLImageElement, ImageProps>(
       backgroundImage:
         imageURL === blurDataURL ? `url('${blurDataURL}')` : "none",
       backgroundSize: "cover",
-      filter: imageURL === blurDataURL ? "blur(px)" : "none",
+      // filter: imageURL === blurDataURL ? "blur(px)" : "none",
       aspectRatio: ratio ? `${ratio.x}/${ratio.y}` : "",
     };
 
