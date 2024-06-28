@@ -33,6 +33,7 @@ exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
     var blurDataURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAM0lEQVR4nAEoANf/AP7+//j9/+ry/wDe3NbEqorX1cwAkn9ndUYhjHddAAgEBBIODgcHCB3XE9M/sWuRAAAAAElFTkSuQmCC";
     var _j = (0, react_1.useState)(blurDataURL), imageURL = _j[0], setImageURL = _j[1];
     var _k = (0, react_1.useState)(false), isLoaded = _k[0], setIsLoaded = _k[1];
+    var _l = (0, react_1.useState)(undefined), aspectRatio = _l[0], setAspectRatio = _l[1];
     var imgRef = (0, react_1.useRef)(null);
     (0, react_1.useEffect)(function () {
         if (typeof window === "undefined" ||
@@ -56,9 +57,14 @@ exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
         };
     }, [imgRef]);
     (0, react_1.useEffect)(function () {
+        if (isLoaded && typeof source === "string") {
+            getAspectRatio(source, setAspectRatio);
+        }
+    }, [source, isLoaded]);
+    (0, react_1.useEffect)(function () {
         if (isLoaded) {
             if (typeof window === "undefined") {
-                setImageURL(source instanceof File ? "" : source); // ssr
+                setImageURL(typeof source === "string" ? source : ""); // ssr
             }
             else {
                 if (source instanceof File) {
@@ -78,11 +84,17 @@ exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
             }
         }
     }, [source, isLoaded]);
-    //
-    // image resizing logic
+    var getAspectRatio = function (src, setAspectRatio) {
+        var img = new Image();
+        img.onload = function () {
+            var aspectRatio = img.width / img.height;
+            setAspectRatio(aspectRatio);
+        };
+        img.src = src;
+    };
     var resizeImage = function (source) {
-        var img = document.createElement("img");
-        img.crossOrigin = "anonymous"; // CORS 정책 준수
+        var img = new Image();
+        img.crossOrigin = "anonymous"; // CORS compliance
         img.src = source;
         img.onload = function () {
             var canvas = document.createElement("canvas");
@@ -95,8 +107,8 @@ exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
             var maxHeight = (size === null || size === void 0 ? void 0 : size.maxHeight)
                 ? parseInt(size.maxHeight.toString(), 10)
                 : img.height;
-            canvas.width = maxWidth !== null && maxWidth !== void 0 ? maxWidth : size === null || size === void 0 ? void 0 : size.minWidth;
-            canvas.height = maxHeight !== null && maxHeight !== void 0 ? maxHeight : size === null || size === void 0 ? void 0 : size.minHeight;
+            canvas.width = maxWidth;
+            canvas.height = maxHeight;
             ctx.drawImage(img, 0, 0, maxWidth, maxHeight);
             try {
                 var resizedImage = canvas.toDataURL();
@@ -110,16 +122,15 @@ exports.ImageInstance = (0, react_1.forwardRef)(function (_a, ref) {
     };
     var imageSizeStyle = {
         width: (_b = size === null || size === void 0 ? void 0 : size.width) !== null && _b !== void 0 ? _b : "100%",
-        height: (_c = size === null || size === void 0 ? void 0 : size.height) !== null && _c !== void 0 ? _c : "auto",
+        height: (_c = size === null || size === void 0 ? void 0 : size.height) !== null && _c !== void 0 ? _c : (aspectRatio ? "calc(100% / ".concat(aspectRatio, ")") : "auto"),
         minWidth: (_d = size === null || size === void 0 ? void 0 : size.minWidth) !== null && _d !== void 0 ? _d : "auto",
         maxWidth: (_e = size === null || size === void 0 ? void 0 : size.maxWidth) !== null && _e !== void 0 ? _e : "auto",
         minHeight: (_f = size === null || size === void 0 ? void 0 : size.minHeight) !== null && _f !== void 0 ? _f : "auto",
         maxHeight: (_g = size === null || size === void 0 ? void 0 : size.maxHeight) !== null && _g !== void 0 ? _g : "auto",
         backgroundImage: imageURL === blurDataURL ? "url('".concat(blurDataURL, "')") : "none",
         backgroundSize: "cover",
-        filter: imageURL === blurDataURL ? "blur(px)" : "none",
-        aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : "",
+        filter: imageURL === blurDataURL ? "blur(20px)" : "none",
+        aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : undefined,
     };
-    console.error = function () { };
-    return ((0, jsx_runtime_1.jsx)("img", __assign({ ref: imgRef, src: imageURL, alt: alt, loading: "lazy", css: __assign(__assign({}, imageSizeStyle), { objectFit: objectFit, borderRadius: borderRadius, aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : "" }) }, props)));
+    return ((0, jsx_runtime_1.jsx)("img", __assign({ ref: imgRef, src: imageURL, alt: alt, loading: "lazy", css: __assign(__assign({}, imageSizeStyle), { objectFit: objectFit, borderRadius: borderRadius !== null && borderRadius !== void 0 ? borderRadius : 0, aspectRatio: ratio ? "".concat(ratio.x, "/").concat(ratio.y) : undefined }) }, props)));
 });
