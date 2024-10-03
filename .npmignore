@@ -1,4 +1,6 @@
-node_modules/
-src/
-public/
-tsconfig.json
+/src
+/node_modules
+/.vscode
+/.git
+/vite.config.ts
+/tsconfig.json

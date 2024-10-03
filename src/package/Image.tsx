@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+
 import React, {
   ForwardedRef,
   ImgHTMLAttributes,
@@ -7,8 +8,8 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { ImageInstance } from "./instance/ImageInstance";
 import { FixedImagePopWrap } from "./instance/FixedImagePopWrap";
+import { ImageInstance } from "./instance/ImageInstance";
 
 interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   source: string | File;
@@ -27,8 +28,10 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   zoomUp?: boolean;
 }
 
+type ImagePropsWithoutSize = Omit<ImageProps, "sizes">;
+
 export const Image = forwardRef(
-  (props: ImageProps, ref: ForwardedRef<HTMLImageElement>) => {
+  (props: ImagePropsWithoutSize, ref: ForwardedRef<HTMLImageElement>) => {
     const {
       source,
       alt,

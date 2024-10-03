@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { ReactNode } from "react";
 
 export function FixedImagePopWrap({
@@ -12,7 +10,7 @@ export function FixedImagePopWrap({
   return (
     <>
       <div
-        css={{
+        style={{
           zIndex: 99997,
           display: "flex",
           flex: 1,
@@ -34,7 +32,7 @@ export function FixedImagePopWrap({
 
       <div
         className="zoom-pop-wrap"
-        css={{
+        style={{
           zIndex: 999998,
           width: "100%",
           height: "100%",
@@ -49,7 +47,7 @@ export function FixedImagePopWrap({
       >
         <div
           className="zoom-image-pop-up"
-          css={{
+          style={{
             position: "relative",
             width: "100%",
             height: "100%",
@@ -64,7 +62,7 @@ export function FixedImagePopWrap({
         <div
           className="modal-pop-up-cancel-tab"
           onClick={onCancel}
-          css={{
+          style={{
             zIndex: 99999,
             position: "absolute",
             top: 0,

@@ -1,12 +1,10 @@
-/** @jsxImportSource @emotion/react */
-
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 export function FixedAvatarPopWrap({ children }: { children: ReactNode }) {
   return (
     <>
       <div
-        css={{
+        style={{
           zIndex: 99998,
           display: "flex",
           flex: 1,
@@ -28,7 +26,7 @@ export function FixedAvatarPopWrap({ children }: { children: ReactNode }) {
 
       <div
         className="zoom-pop-wrap"
-        css={{
+        style={{
           zIndex: 999999,
           position: "fixed",
           top: 0,

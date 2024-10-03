@@ -3,10 +3,8 @@
 <h1>react-image-cached-resizer</h1>
 
 <p>
-Increase rendering speed and user experience by resizing images in React.js
-And store images in a memory cache to increase performance-enhancing rendering speed.
-We offer the
-➕ Server-Side-Rending experience.
+It is an image component that provides fast loading speed and high performance in React.js
+Experience various performances from memory cache to resizing
 
 </p>
 </div>
@@ -31,15 +29,17 @@ We offer the
 
 👍 Improved image rendering speed and performance
 
-✅ Image resizing rendering
+✅ Image Resizing and Optimizing Rendering
+
+✅ Provides Webp extension conversion
 
 ✅ Image Memory Cache
 
 ✅ server-side rendering
 
-🗃️ Image or Avatar Widgets Available
+🗃 Provide ️ image or avatar widget types
 
-🔍 Provides image magnification
+🔍 Provide image magnification
 
 ---
 
